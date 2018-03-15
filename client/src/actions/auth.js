@@ -15,7 +15,8 @@ export const handleRegister = (
       password_confirmation: passwordConfirmation 
     })
       .then( res => {
-        dispatch(user(res.data.data))
+        console.log(res.headers)
+        dispatch(user(res.data.data, res.headers))
         history.push('/')
       })
   }
@@ -32,7 +33,8 @@ export const handleLogin = (
       password
     })
       .then( res => {
-        dispatch(user(res.data))
+        debugger
+        dispatch(user(res.data.data, res.headers))
         history.push('/')
       })
   }
@@ -49,6 +51,18 @@ export const handleLogout = (history) => {
   }
 }
 
-const user = (user) => {
-  return { type: LOGIN, user }
+export const validateToken = (callBack = () => {}) => {
+  return dispatch => {
+    dispatch({ type: 'VALIDATE_TOKEN' });
+    const headers = axios.defaults.headers.common;
+    axios.get('/api/auth/validate_token', headers)
+      .then(res => {
+        const user = res.data.data;
+        dispatch(user(user, res.headers))
+    }).catch(() => callBack());
+  };
+};
+
+const user = (user, headers) => {
+  return { type: LOGIN, user, headers: headers }
 }

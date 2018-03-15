@@ -5778,6 +5778,10 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+redux-devise-axios@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/redux-devise-axios/-/redux-devise-axios-0.0.4.tgz#7b50be821f3363bad98392e78a8e270a18e2e3bd"
+
 redux-thunk@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
